@@ -53,6 +53,12 @@ class AdRep{
 		return "<a href=\"mailto:".$this->getEmail()."\" class=\"info\" title=\"".$this->getEmail()."\">".$this->getName()."</a>";
 	
 	}
+	
+	public function generateTableCellHTMLWithOutEmail(){
+	
+		return $this->getName();
+	
+	}
 
 }
 
