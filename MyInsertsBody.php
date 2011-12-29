@@ -2,6 +2,8 @@
 
 require_once 'Page.php';
 require_once 'InsertionOrder.php';
+require_once 'AdRep.php';
+require_once 'Status.php';
 
 class MyInsertsBody extends Body{
 
@@ -28,9 +30,13 @@ class MyInsertsBody extends Body{
 
 	public function generateHTML(){
 	
-		$insertion = new InsertionOrder("Andrew Melton", "apmelton@radford.edu", "9/20/2011", "9/26/2011", "9/27/2011",
-	"Design", "Your ad has been aproved and is being designed.", "To Be Designed", "A designer is working on your ad.", "Paid", "Payment has been recieved.",
-	2, 4, 2, "In-House", "CMYK", 0, "ball");
+		$adRep = new AdRep(1, "Andrew Melton", "apmelton@radford.edu");
+		$status = new Status(1, "Design", "Your ad has been aproved and is being designed.");
+		$designStatus = new Status(1, "To Be Designed", "A designer is working on your ad.");
+		$billingStatus = new Status(1, "Paid", "");
+	
+		$insertion = new InsertionOrder($adRep, $status, $designStatus, $billingStatus,
+		"9/20/2011", "9/26/2011", "9/27/2011", 2, 4, 2, "In-House", "CMYK", 0, "ball");
 	
 		return "<br />
 				<div id=\"insertsheader\">

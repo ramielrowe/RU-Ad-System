@@ -1,18 +1,25 @@
 <?php
 
+require_once 'AdRep.php';
+require_once 'Status.php';
+
 class InsertionOrder {
 
-	private $adRepName;
-	private $adRepEmail;
+	// Class AdRep
+	private $adRep;
+	
+	// Class Status
+	private $status;
+	
+	// Class Status
+	private $designStatus;
+	
+	// Class Status
+	private $billingStatus;
+	
 	private $createdDate;
 	private $lastUpdatedDate;
 	private $issueDate;
-	private $status;
-	private $statusDesc;
-	private $designStatus;
-	private $designStatusDesc;
-	private $billingStatus;
-	private $billingStatusDesc;
 	private $numColumns;
 	private $width;
 	private $numPlacements;
@@ -21,21 +28,16 @@ class InsertionOrder {
 	private $numInserts;
 	private $imageName;
 	
-	public function __construct($adRepName, $adRepEmail, $createdDate, $lastUpdatedDate, $issueDate,
-	$status, $statusDesc, $designStatus, $designStatusDesc, $billingStatus, $billingStatusDesc,
+	public function __construct($adRep, $status, $designStatus, $billingStatus, $createdDate, $lastUpdatedDate, $issueDate,
 	$numColumns, $width, $numPlacements, $designType, $colorType, $numInserts, $imageName){
 	
-		$this->adRepName = $adRepName;
-		$this->adRepEmail = $adRepEmail; 
+		$this->adRep = $adRep;
+		$this->status = $status;
+		$this->designStatus = $designStatus;
+		$this->billingStatus = $billingStatus;
 		$this->createdDate =  $createdDate;
 		$this->lastUpdatedDate = $lastUpdatedDate;
 		$this->issueDate = $issueDate;
-		$this->status = $status;
-		$this->statusDesc = $statusDesc;
-		$this->designStatus = $designStatus;
-		$this->designStatusDesc = $designStatusDesc;
-		$this->billingStatus = $billingStatus;
-		$this->billingStatusDesc = $billingStatusDesc;
 		$this->numColumns = $numColumns;
 		$this->width = $width;
 		$this->numPlacements = $numPlacements;
@@ -51,13 +53,13 @@ class InsertionOrder {
 		$html = "
 <tr>
 
-	<td class=\"adrep\"><a href=\"mailto:".$this->adRepEmail."\" class=\"info\" title=\"".$this->adRepEmail."\">".$this->adRepName."</a></td>
+	<td class=\"adrep\">".$this->adRep->generateTableCellHTMLWithEmail()."</td>
 	<td class=\"created\">".$this->createdDate."</td>
 	<td class=\"updated\">".$this->lastUpdatedDate."</td>
 	<td class=\"issue\">".$this->issueDate."</td>
-	<td class=\"status\"><a href=\"#\" title=\"".$this->statusDesc."\" class=\"info\">".$this->status."</a></td>
-	<td class=\"designstatus\"><a href=\"#\" title=\"".$this->designStatusDesc."\" class=\"info\">".$this->designStatus."</a></td>
-	<td class=\"billingstatus\"><a href=\"#\" title=\"".$this->billingStatusDesc."\" class=\"info\">".$this->billingStatus."</a></td>
+	<td class=\"status\">".$this->status->generateTableCellHTML()."</td>
+	<td class=\"designstatus\">".$this->designStatus->generateTableCellHTML()."</td>
+	<td class=\"billingstatus\">".$this->billingStatus->generateTableCellHTML()."</td>
 	<td class=\"arrow\"><div class=\"arrow\"></div></td>
 
 </tr>
