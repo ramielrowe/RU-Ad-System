@@ -1,27 +1,22 @@
 <?php
 
+require_once './Config.php';
+
 class Database{
 
 	private static $curQueryNum = 0;
 	private static $link = null;
 	
-	private static $server = 'localhost';
-	private static $user = 'adsys';
-	private static $password = 'Pass1234';
-	private static $database = 'adsys';
-	
-	private static $tablePrefix = '';
-	
 	public static function Open(){
 
-		Database::$link = mysql_connect(Database::$server, Database::$user, Database::$password);
+		Database::$link = mysql_connect(Config::getVariable('mysql_server'), Config::getVariable('mysql_user'), Config::getVariable('mysql_password'));
 		if (!Database::$link){
 			die('<script language="Javascript"> alert("Q'.Database::$curQueryNum.': Could not connect: ' . mysql_error(Database::$link) . '")</script>');
 		}
 		
-		$db_selected = mysql_select_db(Database::$database, Database::$link);
+		$db_selected = mysql_select_db(Config::getVariable('mysql_database'), Database::$link);
 		if(!$db_selected){
-			die('<script language="Javascript"> alert("Q' . Database::$curQueryNum . ': Couldn\'t use '.Database::$database.': ' . mysql_error(Database::$link) . '")</script>');
+			die('<script language="Javascript"> alert("Q' . Database::$curQueryNum . ': Couldn\'t use '.Config::getVariable('mysql_database').': ' . mysql_error(Database::$link) . '")</script>');
 		}
 	
 	}
@@ -90,7 +85,7 @@ class Database{
 	
 	public static function addPrefix($tableName){
 	
-		return Database::$tablePrefix . $tableName;
+		return Config::getVariable('mysql_table_prefix') . $tableName;
 	
 	}
 

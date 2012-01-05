@@ -1,6 +1,6 @@
 <?php
 
-require_once './lib/Form/LoginHandler.php';
+require_once './Config.php';
 
 require_once './lib/Site/Page.php';
 require_once './lib/Site/StandardLayout.php';
@@ -28,6 +28,7 @@ if(isset($_POST['action'])){
 	
 	if($context->getPageID() == "login"){
 	
+		require_once './lib/Form/LoginHandler.php';
 		$loginHandler = new LoginHandler();
 		$loginHandler->handleForm($context, $action);
 	
