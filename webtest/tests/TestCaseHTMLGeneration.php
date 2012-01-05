@@ -1,9 +1,9 @@
 <?php
 
 require_once 'PHPUnit/Autoload.php';
-require_once '../Status.php';
-require_once '../AdRep.php';
-require_once '../InsertionOrder.php';
+require_once '../lib/DB/Status.php';
+require_once '../lib/DB/AdRep.php';
+require_once '../lib/DB/InsertionOrder.php';
 
 class TestCaseHTMLGeneration extends PHPUnit_Framework_TestCase{
 
@@ -18,7 +18,7 @@ class TestCaseHTMLGeneration extends PHPUnit_Framework_TestCase{
 	
 	public function testAdRepGenerateTableCellHTMLWithEmail(){
 	
-		$adRep = new AdRep(1, "Andrew Melton", "andrew@melton.com");
+		$adRep = new AdRep(1, "Andrew Melton", "andrew@melton.com", "806-267-0327");
 	
 		$this->assertEquals("<a href=\"mailto:andrew@melton.com\" class=\"info\" title=\"andrew@melton.com\">Andrew Melton</a>",
 			$adRep->generateTableCellHTMLWithEmail());
@@ -27,7 +27,7 @@ class TestCaseHTMLGeneration extends PHPUnit_Framework_TestCase{
 	
 	public function testAdRepGenerateTableCellHTMLWithOutEmail(){
 	
-		$adRep = new AdRep(1, "Andrew Melton", "andrew@melton.com");
+		$adRep = new AdRep(1, "Andrew Melton", "andrew@melton.com", "806-267-0327");
 	
 		$this->assertEquals("Andrew Melton",
 			$adRep->generateTableCellHTMLWithOutEmail());
@@ -36,7 +36,7 @@ class TestCaseHTMLGeneration extends PHPUnit_Framework_TestCase{
 	
 	public function testInsertionOrderGenerateHTML(){
 	
-		$adRep = new AdRep(1, "Andrew Melton", "andrew@melton.com");
+		$adRep = new AdRep(1, "Andrew Melton", "andrew@melton.com", "806-267-0327");
 		$status = new Status(1, "Status Name", "Test description.");
 		$designStatus = new Status(1, "Design Status Name", "Test design description.");
 		$billingStatus = new Status(1, "Billing Status Name", "Test billing description.");

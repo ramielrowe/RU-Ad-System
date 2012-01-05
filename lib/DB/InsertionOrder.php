@@ -68,7 +68,7 @@ class InsertionOrder {
 
 	<td colspan=\"8\">
 	
-		<a href=\"".$this->imageName.".jpg\" target=\"_blank\" class=\"preview\"><img src=\"".$this->imageName."_rs.jpg\"></a>
+		<a href=\"./images/".$this->imageName.".jpg\" target=\"_blank\" class=\"preview\"><img src=\"./images/".$this->imageName."_rs.jpg\"></a>
 		<ul>
 			<li>".$this->numColumns." Columns x ".$this->width." Inches</li>
 			<li>Placements: ".$this->numPlacements."</li>

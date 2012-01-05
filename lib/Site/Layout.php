@@ -41,18 +41,6 @@ abstract class Layout{
 	
 	}
 	
-	public function getTitle(){
-	
-		return $this->title;
-	
-	}
-	
-	public function setTitle($_title){
-	
-		$this->title = $_title;
-	
-	}
-	
 	public abstract function generateHTML();
 
 }

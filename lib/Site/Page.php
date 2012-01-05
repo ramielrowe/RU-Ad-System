@@ -1,7 +1,8 @@
 <?php
 
+require_once './lib/Util/SessionUtil.php';
+
 require_once 'Layout.php';
-require_once 'SessionUtil.php';
 require_once 'UnauthErrorLayout.php';
 
 class Page {
@@ -10,16 +11,16 @@ class Page {
 	private $layout;
 	private $userLevelErrorLayout;
 	
-	public function __construct($userLevel, $_layout){
+	public function __construct($minUserLevel, $_layout){
 	
-		$this->minimumUserLevel = $userLevel;
+		$this->minimumUserLevel = $minUserLevel;
 		$this->layout = $_layout;
 		$this->userLevelErrorLayout = new UnauthErrorLayout();
 	
 	}
 	
 	public function generateHTML(){
-		if(SessionUtil::isVariableSet("user_level") && SessionUtil::getVariable("user_level") >= $this->getMinimumUserLevel())
+		if(SessionUtil::getUserlevel() >= $this->getMinimumUserLevel())
 			return $this->layout->generateHTML();
 		else{
 			return $this->userLevelErrorLayout->generateHTML();

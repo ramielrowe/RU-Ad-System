@@ -5,11 +5,13 @@ class AdRep{
 	private $repID;
 	private $name;
 	private $email;
+	private $phone;
 	
-	public function __construct($ID, $name, $email){
+	public function __construct($ID, $name, $email, $phone){
 		$this->repID = $ID;
 		$this->name = $name;
 		$this->email = $email;
+		$this->phone = $phone;
 	}
 	
 	public function getRepID(){
@@ -45,6 +47,18 @@ class AdRep{
 	public function setEmail($email){
 	
 		$this->email = $email;
+	
+	}
+	
+	public function getPhone(){
+	
+		return $this->phone;
+	
+	}
+	
+	public function setPhone($phone){
+	
+		$this->phone = $phone;
 	
 	}
 	

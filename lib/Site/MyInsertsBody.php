@@ -1,19 +1,41 @@
 <?php
 
 require_once 'Page.php';
-require_once 'InsertionOrder.php';
-require_once 'AdRep.php';
-require_once 'Status.php';
+require_once './lib/DB/InsertionOrder.php';
+require_once './lib/DB/AdRep.php';
+require_once './lib/DB/Status.php';
 
 class MyInsertsBody extends Body{
 
+	
+	public function getTitle(){
+	
+		return "My Insertions";
+	
+	}
+	
 	public function getScriptsHTML(){
 	
-		return "<script src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js\" type=\"text/javascript\"></script>
-
-		<script type=\"text/javascript\">  
+		return "<script type=\"text/javascript\">  
 
 			$(document).ready(function(){
+			
+				var pane = $('.scroll');
+				pane.jScrollPane({
+					horizontalGutter: -7,
+					verticalGutter: -7,
+					showArrows: false,
+					hideFocus: true
+				});
+				var api = pane.data('jsp');
+				
+				$('.jspDrag').hide();
+				$('.jspScrollable').mouseenter(function(){
+					$('.jspDrag').fadeIn('slow');
+				});
+				$('.jspScrollable').mouseleave(function(){
+					$('.jspDrag').fadeOut('slow');
+				});
 				$(\"#report tr:even\").addClass(\"odd\");
 				$(\"#report tr:not(.odd)\").hide();
 				//$(\"#report tr:first-child\").show();
@@ -21,7 +43,11 @@ class MyInsertsBody extends Body{
 				$(\"#report tr.odd\").click(function(){
 					$(this).next(\"tr\").toggle();
 					$(this).find(\".arrow\").toggleClass(\"up\");
+					api.reinitialise();
 				});
+				
+				api.reinitialise();
+				
 			});
 
 		</script>";
@@ -30,7 +56,7 @@ class MyInsertsBody extends Body{
 
 	public function generateHTML(){
 	
-		$adRep = new AdRep(1, "Andrew Melton", "apmelton@radford.edu");
+		$adRep = new AdRep(1, "Andrew Melton", "apmelton@radford.edu", "804-267-0327");
 		$status = new Status(1, "Design", "Your ad has been aproved and is being designed.");
 		$designStatus = new Status(1, "To Be Designed", "A designer is working on your ad.");
 		$billingStatus = new Status(1, "Paid", "");
@@ -56,7 +82,7 @@ class MyInsertsBody extends Body{
 				</table>
 				</div>
 			
-				<div id=\"contentdiv\">
+				<div id=\"contentdiv\" class=\"scroll\">
 				
 					<table id=\"report\" border=\"0\">
 						

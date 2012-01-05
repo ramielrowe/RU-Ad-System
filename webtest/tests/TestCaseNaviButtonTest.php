@@ -1,7 +1,7 @@
 <?php
 
 require_once 'PHPUnit/Autoload.php';
-require_once '../NaviButton.php';
+require_once '../lib/Site/NaviButton.php';
 
 class TestCaseNaviButtonTest extends PHPUnit_Framework_TestCase{
 
