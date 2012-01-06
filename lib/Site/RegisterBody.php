@@ -41,6 +41,8 @@ class RegisterBody extends Body{
 		
 		return $this->context->getErrorHTML()."<div style=\"width: 45%; margin-left: auto; margin-right: auto;\">
 	
+		<div class=\"centered\"><h3>Client Registration</h3></div>
+		
 		<form action=\"index.php?pageid=register\" method=\"POST\">
 			<div style=\"float: left; text-align: left;\">
 				<input type=\"hidden\" name=\"action\" value=\"client\"/>
