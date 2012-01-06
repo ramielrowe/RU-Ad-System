@@ -107,10 +107,18 @@ class StandardLayout extends Layout{
 			
 			}
 			
-			label {
-				display:block;
-				margin-top:20px;
-				letter-spacing:2px;
+			label.above {
+				display: block;
+				margin-top: 20px;
+				margin-left: 5px;
+				margin-right: 5px;
+				letter-spacing: 2px;
+			}
+			
+			label.sameline {
+				margin-top: 20px;
+				margin-left: 10px;
+				letter-spacing: 2px;
 			}
 			
 			/* Style the text boxes */
@@ -122,11 +130,10 @@ class StandardLayout extends Layout{
 				border-radius: 5px;
 				-moz-border-radius: 5px;
 				-webkit-border-radius: 5px;
-				outline: none;
 				resize: none;
 			}
 			
-			input.goodbutton {
+			input.stdbutton {
 				background: #dfdfdf;
 				border:1px solid #bcbcbc;
 				color: #3a3a3a;
@@ -137,11 +144,23 @@ class StandardLayout extends Layout{
 				border-radius: 5px;
 				-moz-border-radius: 5px;
 				-webkit-border-radius: 5px;
-				outline: none;
+			}
+			input.altbutton {
+				background: #FDC68A;
+				border:1px solid #bcbcbc;
+				color: #3a3a3a;
+				padding-right: 12px;
+				padding-left: 12px;
+				padding-top: 6px;
+				padding-bottom: 6px;
+				border-radius: 5px;
+				-moz-border-radius: 5px;
+				-webkit-border-radius: 5px;
 			}
 			
-			input.goodbutton:focus, input.text:focus, input.submit:focus, textarea.text:focus {
+			input.bluefocus:focus, input.bluefocus:focus, input.bluefocus:focus, textarea.bluefocus:focus {
 				border: 2px solid #97d6eb;
+				outline: none;
 			}
 
 		</style>

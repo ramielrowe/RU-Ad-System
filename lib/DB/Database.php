@@ -8,7 +8,7 @@ class Database{
 	private static $link = null;
 	
 	public static function Open(){
-
+		
 		Database::$link = mysql_connect(Config::getVariable('mysql_server'), Config::getVariable('mysql_user'), Config::getVariable('mysql_password'));
 		if (!Database::$link){
 			die('<script language="Javascript"> alert("Q'.Database::$curQueryNum.': Could not connect: ' . mysql_error(Database::$link) . '")</script>');

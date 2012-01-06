@@ -6,7 +6,7 @@ class Config{
 
 		'maint_mode' => false,
 
-		'location' => 'http://localhost/RU-Ad-System/',
+		'location' => 'http://localhost/RU-Ad-System_e/',
 
 		'mysql_server' => 'localhost',
 

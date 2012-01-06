@@ -53,10 +53,6 @@ if($context->getPageID() == "home"){
 	require_once './lib/Site/HomeBody.php';
 	$pageBody = new HomeBody();
 }
-else if($context->getPageID() == "myInserts"){
-	require_once './lib/Site/MyInsertsBody.php';
-	$pageBody = new MyInsertsBody();
-}
 else if($context->getPageID() == "login"){
 	require_once './lib/Site/LoginBody.php';
 	$pageBody = new LoginBody($context);
@@ -67,8 +63,17 @@ else if($context->getPageID() == "register"){
 }
 else if($context->getPageID() == "logout"){
 	SessionUtil::restart();
+	$context->setPageID("login");
 	require_once './lib/Site/LoginBody.php';
 	$pageBody = new LoginBody($context);
+}
+else if($context->getPageID() == "myInserts"){
+	require_once './lib/Site/MyInsertsBody.php';
+	$pageBody = new MyInsertsBody();
+}
+else if($context->getPageID() == "myAccount"){
+	require_once './lib/Site/MyAccountBody.php';
+	$pageBody = new MyAccountBody();
 }
 else{
 	$context->setPageID("home");
@@ -77,7 +82,7 @@ else{
 }
 
 $pageNavigation = new StandardNavigation($context);
-$layout = new StandardLayout("Homepage", $pageNavigation, $pageBody);
+$layout = new StandardLayout($pageNavigation, $pageBody);
 
 $page = new Page(0, $layout);
 

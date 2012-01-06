@@ -7,11 +7,9 @@ abstract class Layout{
 
 	private $navigation;
 	private $body;
-	private $title;
 	
-	public function __construct($_title, $navi, $_body){
+	public function __construct($navi, $_body){
 	
-		$this->title = $_title;
 		$this->navigation = $navi;
 		$this->body = $_body;
 	

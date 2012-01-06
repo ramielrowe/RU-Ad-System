@@ -6,7 +6,27 @@ require_once 'Login.php';
 require_once './lib/Util/CryptoUtil.php';
 
 class LoginDao{
+	
+	public static function getLoginById($ID){
 
+		$query = "SELECT * FROM ".Database::addPrefix('logins')." WHERE LoginID = '".Database::makeStringSafe($ID)."' LIMIT 1";
+		
+		$result = Database::doQuery($query);
+		
+		if(mysql_num_rows($result) == 1){
+		
+			$login = mysql_fetch_assoc($result);
+		
+			return new Login($login['LoginID'],$login['Username'],$login['Password'],$login['UserType']);
+				
+		}else{
+		
+			return null;
+		
+		}
+	
+	}
+	
 	public static function getLoginByUsername($username){
 	
 		$query = "SELECT * FROM ".Database::addPrefix('logins')." WHERE username = '".Database::makeStringSafe($username)."' LIMIT 1";
@@ -33,15 +53,16 @@ class LoginDao{
 	
 	}
 	
-	public static function createLogin($username, $password){
+	public static function createLogin($username, $password, $type = Login::CLIENT){
 	
 		$query = "INSERT INTO ".Database::addPrefix('logins')."
-			SET username = '".Database::makeStringSafe($username)."',
-			password = '".Database::makeStringSafe(CryptoUtil::encrypt($password))."'";
+			SET Username = '".Database::makeStringSafe($username)."',
+			Password = '".Database::makeStringSafe(CryptoUtil::encrypt($password))."',
+			UserType = '".Database::makeStringSafe($type)."'";
 			
 		Database::doQuery($query);
 		
-		return getLoginByUsername($username);
+		return LoginDao::getLoginByUsername($username);
 	
 	}
 	

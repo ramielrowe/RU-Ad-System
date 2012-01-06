@@ -54,10 +54,10 @@ class StandardNavigation extends Navigation{
 				return "<div class=\"centered\">
 					<form action=\"index.php?pageid=login\" method=\"POST\">
 						<input type=\"hidden\" name=\"action\" value=\"login\" />
-						<input name=\"username\" type=\"text\" placeholder=\"Username\" class=\"text\" />
-						<input name=\"password\" type=\"password\" placeholder=\"Password\" class=\"text\" />
-						<input type=\"submit\" value=\"Login\" class=\"goodbutton\" />
-						<input type=\"button\" value=\"Register\" onclick=\"location.href='./index.php?pageid=register'\" class=\"goodbutton\" />
+						<input name=\"username\" type=\"text\" placeholder=\"Username\" class=\"text bluefocus\" />
+						<input name=\"password\" type=\"password\" placeholder=\"Password\" class=\"text bluefocus\" />
+						<input type=\"submit\" value=\"Login\" class=\"stdbutton bluefocus\" />
+						<input type=\"button\" value=\"Register\" onclick=\"location.href='./index.php?pageid=register'\" class=\"altbutton bluefocus\" />
 					</form>
 				</div>";
 				

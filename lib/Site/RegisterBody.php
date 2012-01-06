@@ -53,23 +53,26 @@ class RegisterBody extends Body{
 		<form action=\"index.php?pageid=register\" method=\"POST\">
 			<div style=\"float: left; text-align: left;\">
 				<input type=\"hidden\" name=\"action\" value=\"client\"/>
-				<label for=\"name\">Name</label>
-				<input name=\"name\" type=\"text\" placeholder=\"Name\" class=\"text\"  ".$nameValue." />
-				<label for=\"username\">Username</label>
-				<input name=\"username\" type=\"text\" placeholder=\"Username\" class=\"text\"  ".$usernameValue." />
-				<label for=\"password\">Password</label>
-				<input name=\"password\" type=\"password\" placeholder=\"Password\" class=\"text\" />
-				<label for=\"password\">Repeat Password</label>
-				<input name=\"repeatpassword\" type=\"password\" placeholder=\"Password\" class=\"text\" />
+				<label for=\"name\" class=\"above\">Name</label>
+				<input name=\"name\" type=\"text\" placeholder=\"Name\" class=\"text bluefocus\"  ".$nameValue." />
+				<label for=\"username\" class=\"above\">Username</label>
+				<input name=\"username\" type=\"text\" placeholder=\"Username\" class=\"text bluefocus\"  ".$usernameValue." />
+				<label for=\"password\" class=\"above\">Password</label>
+				<input name=\"password\" type=\"password\" placeholder=\"Password\" class=\"text bluefocus\" />
+				<label for=\"password\" class=\"above\">Repeat Password</label>
+				<input name=\"repeatpassword\" type=\"password\" placeholder=\"Password\" class=\"text bluefocus\" />
 			</div>
 			<div style=\"float: right; text-align:right;\">
-				<label for=\"email\">Email</label>
-				<input name=\"email\" type=\"text\" placeholder=\"Email\" class=\"text\"  ".$emailValue." />
-				<label for=\"phone\">Phone</label>
-				<input name=\"phone\" type=\"text\" placeholder=\"Phone\" class=\"text\"  ".$phoneValue." />
-				<label for=\"address\">Address</label>
-				<textarea name=\"address\" rows=\"3\" cols=\"23\" class=\"text\">".$addressValue."</textarea>
-				<br /><br /><input type=\"submit\" value=\"Register\" class=\"goodbutton\" />
+				<label for=\"email\" class=\"above\">Email</label>
+				<input name=\"email\" type=\"email\" placeholder=\"Email\" class=\"text bluefocus\"  ".$emailValue." />
+				<label for=\"phone\" class=\"above\">Phone</label>
+				<input name=\"phone\" type=\"text\" placeholder=\"Phone\" class=\"text bluefocus\"  ".$phoneValue." />
+				<label for=\"address\" class=\"above\">Address</label>
+				<textarea name=\"address\" rows=\"3\" cols=\"23\" class=\"text bluefocus\">".$addressValue."</textarea>
+			</div>
+			<div style=\"float: right; text-align:right;\">
+				<br /><input type=\"submit\" value=\"Register\" class=\"stdbutton bluefocus\" />
+				<input type=\"button\" value=\"Cancel\" onclick=\"location.href='./index.php?pageid=login'\" class=\"altbutton bluefocus\" />
 			</div>
 		</form>
 		</div>";

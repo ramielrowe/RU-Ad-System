@@ -1,7 +1,10 @@
 <?php
 
 class Login{
-
+	
+	const CLIENT = "Client";
+	const ADREP = "AdRep";
+	
 	public $ID;
 	public $username;
 	public $encPassword;

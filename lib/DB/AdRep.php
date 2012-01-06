@@ -14,13 +14,13 @@ class AdRep{
 		$this->phone = $phone;
 	}
 	
-	public function getRepID(){
+	public function getID(){
 	
 		return $this->repID;
 	
 	}
 	
-	public function setRepID($ID){
+	public function setID($ID){
 	
 		$this->repID = $ID;
 	
