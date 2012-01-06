@@ -2,7 +2,7 @@
 
 require_once './config.php';
 
-class SessionUtil{	
+class SessionUtil{
 	
 	private static function getSessionPrefix(){
 	

@@ -107,6 +107,12 @@ class StandardLayout extends Layout{
 			
 			}
 			
+			label {
+				display:block;
+				margin-top:20px;
+				letter-spacing:2px;
+			}
+			
 			/* Style the text boxes */
 			input.text, textarea.text {
 				background: #efefef;
@@ -117,12 +123,10 @@ class StandardLayout extends Layout{
 				-moz-border-radius: 5px;
 				-webkit-border-radius: 5px;
 				outline: none;
-			}
-			input.text:focus, input.submit:focus, textarea.text:focus {
-				border: 2px solid #97d6eb;
+				resize: none;
 			}
 			
-			input.submit {
+			input.goodbutton {
 				background: #dfdfdf;
 				border:1px solid #bcbcbc;
 				color: #3a3a3a;
@@ -134,6 +138,10 @@ class StandardLayout extends Layout{
 				-moz-border-radius: 5px;
 				-webkit-border-radius: 5px;
 				outline: none;
+			}
+			
+			input.goodbutton:focus, input.text:focus, input.submit:focus, textarea.text:focus {
+				border: 2px solid #97d6eb;
 			}
 
 		</style>

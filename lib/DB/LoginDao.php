@@ -27,6 +27,12 @@ class LoginDao{
 	
 	}
 	
+	public static function usernameFree($username){
+	
+		return LoginDao::getLoginByUsername($username) == null;
+	
+	}
+	
 	public static function createLogin($username, $password){
 	
 		$query = "INSERT INTO ".Database::addPrefix('logins')."

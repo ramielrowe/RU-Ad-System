@@ -33,10 +33,17 @@ if(isset($_POST['action'])){
 		$loginHandler->handleForm($context, $action);
 	
 	}
+	else if($context->getPageID() == "register"){
+	
+		require_once './lib/Form/RegisterHandler.php';
+		$registerHandler = new RegisterHandler();
+		$registerHandler->handleForm($context, $action);
+	
+	}
 
 }
 
-if(!SessionUtil::isLoggedIn()){
+if(!SessionUtil::isLoggedIn() && $context->getPageID() != "register"){
 	$context->setPageID("login");
 }
 
@@ -53,6 +60,10 @@ else if($context->getPageID() == "myInserts"){
 else if($context->getPageID() == "login"){
 	require_once './lib/Site/LoginBody.php';
 	$pageBody = new LoginBody($context);
+}
+else if($context->getPageID() == "register"){
+	require_once './lib/Site/RegisterBody.php';
+	$pageBody = new RegisterBody($context);
 }
 else if($context->getPageID() == "logout"){
 	SessionUtil::restart();
