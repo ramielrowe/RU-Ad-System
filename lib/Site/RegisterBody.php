@@ -6,7 +6,7 @@ class RegisterBody extends Body{
 
 	private $context;
 
-	public function __construct(&$context){
+	public function __construct(Context $context){
 		$this->context = $context;
 	}
 	
@@ -21,15 +21,6 @@ class RegisterBody extends Body{
 	}
 
 	public function generateHTML(){
-	
-		$errorhtml = "<div class=\"centered error\">";
-		$errors  = $this->context->getErrors();
-		foreach($errors as $error){
-		
-			$errorhtml = $errorhtml." ".$error."<br />";
-		
-		}
-		$errorhtml = $errorhtml."</div>";
 		
 		$nameValue = "";
 		$usernameValue = "";
@@ -48,7 +39,7 @@ class RegisterBody extends Body{
 		}
 		
 		
-		return $errorhtml."<div style=\"width: 45%; margin-left: auto; margin-right: auto;\">
+		return $this->context->getErrorHTML()."<div style=\"width: 45%; margin-left: auto; margin-right: auto;\">
 	
 		<form action=\"index.php?pageid=register\" method=\"POST\">
 			<div style=\"float: left; text-align: left;\">

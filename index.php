@@ -40,6 +40,13 @@ if(isset($_POST['action'])){
 		$registerHandler->handleForm($context, $action);
 	
 	}
+	else if($context->getPageID() == "myAccount"){
+	
+		require_once './lib/Form/MyAccountHandler.php';
+		$myAccountHandler = new MyAccountHandler();
+		$myAccountHandler->handleForm($context, $action);
+	
+	}
 
 }
 
@@ -73,7 +80,7 @@ else if($context->getPageID() == "myInserts"){
 }
 else if($context->getPageID() == "myAccount"){
 	require_once './lib/Site/MyAccountBody.php';
-	$pageBody = new MyAccountBody();
+	$pageBody = new MyAccountBody($context);
 }
 else{
 	$context->setPageID("home");

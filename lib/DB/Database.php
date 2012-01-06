@@ -1,6 +1,6 @@
 <?php
 
-require_once './Config.php';
+require_once "./Config.php";
 
 class Database{
 
@@ -9,14 +9,14 @@ class Database{
 	
 	public static function Open(){
 		
-		Database::$link = mysql_connect(Config::getVariable('mysql_server'), Config::getVariable('mysql_user'), Config::getVariable('mysql_password'));
+		Database::$link = mysql_connect(Config::getVariable("mysql_server"), Config::getVariable("mysql_user"), Config::getVariable("mysql_password"));
 		if (!Database::$link){
-			die('<script language="Javascript"> alert("Q'.Database::$curQueryNum.': Could not connect: ' . mysql_error(Database::$link) . '")</script>');
+			die("Q".Database::$curQueryNum.": Could not connect: " . mysql_error(Database::$link));
 		}
 		
-		$db_selected = mysql_select_db(Config::getVariable('mysql_database'), Database::$link);
+		$db_selected = mysql_select_db(Config::getVariable("mysql_database"), Database::$link);
 		if(!$db_selected){
-			die('<script language="Javascript"> alert("Q' . Database::$curQueryNum . ': Couldn\'t use '.Config::getVariable('mysql_database').': ' . mysql_error(Database::$link) . '")</script>');
+			die("Q".Database::$curQueryNum . ": Couldn\"t use ".Config::getVariable("mysql_database").": " . mysql_error(Database::$link));
 		}
 	
 	}
@@ -26,7 +26,7 @@ class Database{
 		
 		if($error){
 		
-			die('<script language="Javascript"> alert("Q'.Database::$curQueryNum.': Invalid Query: ' . mysql_error(Database::$link) . '")</script>');
+			die("Q".Database::$curQueryNum.": Invalid Query: " . mysql_error(Database::$link));
 		
 		}
 		
@@ -37,13 +37,13 @@ class Database{
 
 	public static function CurrentMySQLDate(){
 
-		return date('Y-m-d');
+		return date("Y-m-d");
 
 	}
 
 	public static function CurrentMySQLDateTime(){
 
-		return date('Y-m-d H:i:s');
+		return date("Y-m-d H:i:s");
 
 	}
 
@@ -85,7 +85,7 @@ class Database{
 	
 	public static function addPrefix($tableName){
 	
-		return Config::getVariable('mysql_table_prefix') . $tableName;
+		return Config::getVariable("mysql_table_prefix") . $tableName;
 	
 	}
 
@@ -109,7 +109,7 @@ class Database{
 		
 		$result = mysql_query($v_query, Database::$link);
 		if (!$result) {
-			die('<script language="Javascript"> alert("Q'.Database::$curQueryNum.': Invalid Query: ' . mysql_error(Database::$link) . '\n\nQuery:\n'.$v_query.'")</script>');
+			die("Q".Database::$curQueryNum.": Invalid Query: " . mysql_error(Database::$link) . "\n\nQuery:\n".$v_query);
 		}
 		
 		return $result;

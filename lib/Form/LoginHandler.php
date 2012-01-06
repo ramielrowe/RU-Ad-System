@@ -23,6 +23,10 @@ class LoginHandler{
 			
 			}
 		
+		}else{
+			
+			$context->addError("Incorrect Action.");
+			
 		}
 	
 	}

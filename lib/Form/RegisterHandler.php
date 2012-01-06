@@ -47,6 +47,10 @@ class RegisterHandler{
 			
 			}
 		
+		}else{
+			
+			$context->addError("Incorrect Action.");
+			
 		}
 	
 	}

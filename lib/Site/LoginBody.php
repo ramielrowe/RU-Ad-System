@@ -22,14 +22,7 @@ class LoginBody extends Body{
 
 	public function generateHTML(){
 	
-		$errorhtml = "";
-		$errors  = $this->context->getErrors();
-		foreach($errors as $error){
-		
-			$errorhtml = $errorhtml." ".$error;
-		
-		}
-		return "<div class=\"centered error\">".$errorhtml."</div>";
+		return $this->context->getErrorHTML();
 	
 	}
 
