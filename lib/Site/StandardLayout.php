@@ -15,6 +15,7 @@ class StandardLayout extends Layout{
 		
 		<link type=\"text/css\" href=\"./css/jquery.jscrollpane.css\" rel=\"stylesheet\" media=\"all\" />
 		<link type=\"text/css\" href=\"./css/button.css\" rel=\"stylesheet\" media=\"all\" />
+		<link type=\"text/css\" href=\"http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css\" rel=\"stylesheet\" />
 		
 		<style type=\"text/css\">
 		
@@ -124,7 +125,18 @@ class StandardLayout extends Layout{
 			/* Style the text boxes */
 			input.text, textarea.text {
 				background: #efefef;
-				border: 1px solid #cdcdcd;
+				border: 2px solid #cdcdcd;
+				color: #3a3a3a;
+				padding: 7px;
+				border-radius: 5px;
+				-moz-border-radius: 5px;
+				-webkit-border-radius: 5px;
+				resize: none;
+			}
+			
+			select {
+				background: #efefef;
+				border: 2px solid #cdcdcd;
 				color: #3a3a3a;
 				padding: 7px;
 				border-radius: 5px;
@@ -135,7 +147,7 @@ class StandardLayout extends Layout{
 			
 			input.stdbutton {
 				background: #dfdfdf;
-				border:1px solid #bcbcbc;
+				border:2px solid #bcbcbc;
 				color: #3a3a3a;
 				padding-right: 12px;
 				padding-left: 12px;
@@ -147,7 +159,7 @@ class StandardLayout extends Layout{
 			}
 			input.altbutton {
 				background: #FDC68A;
-				border:1px solid #bcbcbc;
+				border:2px solid #bcbcbc;
 				color: #3a3a3a;
 				padding-right: 12px;
 				padding-left: 12px;
@@ -158,7 +170,12 @@ class StandardLayout extends Layout{
 				-webkit-border-radius: 5px;
 			}
 			
-			input.bluefocus:focus, input.bluefocus:focus, input.bluefocus:focus, textarea.bluefocus:focus {
+			.bluefocus:focus, .bluefocus:focus {
+				border: 2px solid #97d6eb;
+				outline: none;
+			}
+			
+			.bluefocus:hover, .bluefocus:hover {
 				border: 2px solid #97d6eb;
 				outline: none;
 			}
@@ -166,6 +183,7 @@ class StandardLayout extends Layout{
 		</style>
 		
 		<script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js\"></script>
+		<script src=\"http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js\"><\/script>
 		<script type=\"text/javascript\" src=\"./javascripts/jquery.mousewheel.js\"></script>
 		<script type=\"text/javascript\" src=\"./javascripts/jquery.jscrollpane.js\"></script>
 	

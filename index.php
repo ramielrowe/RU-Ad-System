@@ -40,6 +40,13 @@ if(isset($_POST['action'])){
 		$registerHandler->handleForm($context, $action);
 	
 	}
+	else if($context->getPageID() == "createInsertion"){
+	
+		require_once './lib/Form/CreateInsertionHandler.php';
+		$createInsertionHandler = new CreateInsertionHandler();
+		$createInsertionHandler->handleForm($context, $action);
+	
+	}
 	else if($context->getPageID() == "myAccount"){
 	
 		require_once './lib/Form/MyAccountHandler.php';
@@ -73,6 +80,10 @@ else if($context->getPageID() == "logout"){
 	$context->setPageID("login");
 	require_once './lib/Site/LoginBody.php';
 	$pageBody = new LoginBody($context);
+}
+else if($context->getPageID() == "createInsertion"){
+	require_once './lib/Site/CreateInsertBody.php';
+	$pageBody = new CreateInsertBody($context);
 }
 else if($context->getPageID() == "myInserts"){
 	require_once './lib/Site/MyInsertsBody.php';

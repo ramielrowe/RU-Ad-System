@@ -80,7 +80,7 @@ class MyAccountBody extends Body{
 			
 			return $this->context->getErrorHTML()."<div class=\"centered\">
 		
-				<h3>Login</h3>
+				<h3>Login Info</h3>
 				
 				<form action=\"./index.php?pageid=myAccount\" method=\"post\">
 					<input type=\"hidden\" name=\"action\" value=\"changePassword\" />
@@ -91,7 +91,7 @@ class MyAccountBody extends Body{
 					<input type=\"submit\" value=\"Change Password\" class=\"stdbutton bluefocus\"/>
 				</form>
 				
-				<h3>Account Info</h3>
+				<h3>Account Info (Ad Rep)</h3>
 				
 				<div style=\"width: 45%; margin-left: auto; margin-right: auto;\">
 					<form action=\"./index.php?pageid=myAccount\" method=\"post\">
@@ -116,7 +116,7 @@ class MyAccountBody extends Body{
 			
 			return $this->context->getErrorHTML()."<div class=\"centered\">
 			
-				<h3>Login</h3>
+				<h3>Login Info</h3>
 				
 				<form action=\"./index.php?pageid=myAccount\" method=\"post\">
 					<input type=\"hidden\" name=\"action\" value=\"changePassword\" />
