@@ -55,7 +55,7 @@ class ClientDao{
 	public static function getClientByID($ID){
 
 		$query = "SELECT * FROM ".Database::addPrefix('clients')." WHERE ClientID = '".Database::makeStringSafe($ID)."' LIMIT 1";
-
+		
 		$result = Database::doQuery($query);
 
 		if(mysql_num_rows($result) == 1){

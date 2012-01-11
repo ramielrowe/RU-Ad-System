@@ -58,6 +58,12 @@ class InsertStatus {
 		
 	}
 	
+	public function generateTableCellHTML(){
+	
+		return "<a href=\"#\" title=\"".$this->getDescription()."\" class=\"info\">".$this->getName()."</a>";
+	
+	}
+	
 	public static function generateSelect(){
 		
 		$statuses = InsertStatusDao::getAll();

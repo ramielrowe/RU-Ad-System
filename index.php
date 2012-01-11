@@ -5,6 +5,8 @@ error_reporting(E_ALL);
 
 require_once './Config.php';
 
+require_once './lib/DB/Database.php';
+
 require_once './lib/Site/Page.php';
 require_once './lib/Site/StandardLayout.php';
 require_once './lib/Site/StandardNavigation.php';
@@ -14,6 +16,8 @@ require_once './lib/Util/SessionUtil.php';
 
 if(!SessionUtil::start())
 	echo "Error Starting Session";
+
+Database::Open();
 
 $context = new Context();
 $context->setPageID("home");
@@ -108,5 +112,7 @@ $layout = new StandardLayout($pageNavigation, $pageBody);
 $page = new Page(0, $layout);
 
 $page->displayPage();
+
+Database::Close();
 
 ?>

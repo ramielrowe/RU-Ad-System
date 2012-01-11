@@ -4,48 +4,67 @@ require_once 'AdRep.php';
 require_once 'Status.php';
 
 class InsertionOrder {
-
+	
+	private $id;
+	
 	// Class AdRep
 	private $adRep;
 	
-	// Class Status
+	// Class Client
+	private $client;
+	
+	// Class InsertStatus
 	private $status;
 	
-	// Class Status
+	// Class DesignStatus
 	private $designStatus;
 	
-	// Class Status
+	// Class BillingStatus
 	private $billingStatus;
 	
 	private $createdDate;
 	private $lastUpdatedDate;
-	private $issueDate;
+	private $insertDate;
 	private $numColumns;
-	private $width;
+	private $height;
 	private $numPlacements;
-	private $designType;
-	private $colorType;
+	private $design;
+	private $color;
 	private $numInserts;
-	private $imageName;
+	private $imageLoc;
 	
-	public function __construct($adRep, $status, $designStatus, $billingStatus, $createdDate, $lastUpdatedDate, $issueDate,
-	$numColumns, $width, $numPlacements, $designType, $colorType, $numInserts, $imageName){
+	public function __construct($id, AdRep $adRep, Client $client, InsertStatus $status, DesignStatus $designStatus, BillingStatus $billingStatus, $createdDate, $lastUpdatedDate, $insertDate,
+	$numColumns, $height, $numPlacements, $design, $color, $numInserts, $imageLoc){
 	
+		$this->id = $id;
 		$this->adRep = $adRep;
+		$this->client = $client;
 		$this->status = $status;
 		$this->designStatus = $designStatus;
 		$this->billingStatus = $billingStatus;
 		$this->createdDate =  $createdDate;
 		$this->lastUpdatedDate = $lastUpdatedDate;
-		$this->issueDate = $issueDate;
+		$this->insertDate = $insertDate;
 		$this->numColumns = $numColumns;
-		$this->width = $width;
+		$this->height = $height;
 		$this->numPlacements = $numPlacements;
-		$this->designType = $designType;
-		$this->colorType = $colorType;
+		$this->design = $design;
+		$this->color = $color;
 		$this->numInserts = $numInserts;
-		$this->imageName = $imageName;
+		$this->imageLoc = $imageLoc;
 	
+	}
+	
+	public function getID(){
+		return $this->id;
+	}
+	
+	public function getClient(){
+		return $this->client;
+	}
+	
+	public function getImageLoc(){
+		return $this->imageLoc;
 	}
 	
 	public function generateDualRowHTML(){
@@ -56,7 +75,7 @@ class InsertionOrder {
 	<td class=\"adrep\">".$this->adRep->generateTableCellHTMLWithEmail()."</td>
 	<td class=\"created\">".$this->createdDate."</td>
 	<td class=\"updated\">".$this->lastUpdatedDate."</td>
-	<td class=\"issue\">".$this->issueDate."</td>
+	<td class=\"issue\">".$this->insertDate."</td>
 	<td class=\"status\">".$this->status->generateTableCellHTML()."</td>
 	<td class=\"designstatus\">".$this->designStatus->generateTableCellHTML()."</td>
 	<td class=\"billingstatus\">".$this->billingStatus->generateTableCellHTML()."</td>
@@ -68,12 +87,12 @@ class InsertionOrder {
 
 	<td colspan=\"8\">
 	
-		<a href=\"./images/".$this->imageName.".jpg\" target=\"_blank\" class=\"preview\"><img src=\"./images/".$this->imageName."_rs.jpg\"></a>
+		<a href=\"".$this->imageLoc."\" target=\"_blank\" class=\"preview\"><img src=\"./thumb.php?insertId=".$this->id."\"></a>
 		<ul>
-			<li>".$this->numColumns." Columns x ".$this->width." Inches</li>
+			<li>".$this->numColumns." Columns x ".$this->height." Inches</li>
 			<li>Placements: ".$this->numPlacements."</li>
-			<li>Design: ".$this->designType."</li>
-			<li>Color: ".$this->colorType."</li>
+			<li>Design: ".$this->design."</li>
+			<li>Color: ".$this->color."</li>
 			<li>Inserts: ".$this->numInserts."</li>
 	
 	</td>

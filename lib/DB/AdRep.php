@@ -73,6 +73,14 @@ class AdRep{
 		return $this->getName();
 	
 	}
+	
+	public static function emptyAdRep(){
+		return new AdRep(0, "", "", "");
+	}
+	
+	public static function unassignedAdRep(){
+		return new AdRep(0, "Unassigned", "", "");
+	}
 
 }
 

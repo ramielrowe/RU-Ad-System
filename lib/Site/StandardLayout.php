@@ -138,11 +138,16 @@ class StandardLayout extends Layout{
 				background: #efefef;
 				border: 2px solid #cdcdcd;
 				color: #3a3a3a;
-				padding: 7px;
+				padding: 6px;
 				border-radius: 5px;
 				-moz-border-radius: 5px;
 				-webkit-border-radius: 5px;
-				resize: none;
+			}
+			
+			select#design {
+				
+				width: 160px;
+			
 			}
 			
 			input.stdbutton {
@@ -183,7 +188,7 @@ class StandardLayout extends Layout{
 		</style>
 		
 		<script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js\"></script>
-		<script src=\"http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js\"><\/script>
+		<script src=\"http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js\"></script>
 		<script type=\"text/javascript\" src=\"./javascripts/jquery.mousewheel.js\"></script>
 		<script type=\"text/javascript\" src=\"./javascripts/jquery.jscrollpane.js\"></script>
 	

@@ -18,6 +18,14 @@ class DesignStatusDao{
 		return $statuses;
 		
 	}
+	
+	public static function getByID($ID){
+		
+		$row = mysql_fetch_assoc(Database::doQuery("SELECT * FROM ".Database::addPrefix('designstatus')." WHERE StatusID = '".$ID."'"));
+		
+		return new DesignStatus($row['StatusID'], $row['Name'], $row['Description']);
+		
+	}
 
 }
 

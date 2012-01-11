@@ -52,6 +52,12 @@ class DesignStatus {
 		
 	}
 	
+	public function generateTableCellHTML(){
+	
+		return "<a href=\"#\" title=\"".$this->getDescription()."\" class=\"info\">".$this->getName()."</a>";
+	
+	}
+	
 	public function toOptionHTML(){
 		
 		return "<option value=\"".$this->getName()."\">".$this->getName()."</option>";
@@ -72,6 +78,10 @@ class DesignStatus {
 		
 		return $html;
 		
+	}
+	
+	public static function emptyDesignStatus(){
+		return new DesignStatus(0, "", "");
 	}
 
 }

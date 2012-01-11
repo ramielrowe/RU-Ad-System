@@ -33,18 +33,19 @@ class CreateInsertBody extends Body{
 
 		return $this->context->getErrorHTML()."<div class=\"centered\" style=\"width: 45%\">
 		<form action=\"index.php?pageid=createInsertion\" method=\"POST\" enctype=\"multipart/form-data\">
-		<input type=\"hidden\" name=\"action\" value=\"clientCreateInsertion\" />
-		<input type=\"file\" name=\"sampleimage\" id=\"sampleimage\" style=\"visibility: hidden; display: none;\" />
 		<div style=\"float: left; text-align: left;\">
 			<label for=\"insertdate\" class=\"above\">Insert Date</label>
 			<input type=\"text\" readonly name=\"insertdate\" placeholder=\"Insert Date\" class=\"bluefocus text date\"\><br />
 			<label for=\"design\" class=\"above\">Design</label>
-			<select name=\"design\" class=\"bluefocus\">
+			<select name=\"design\" id=\"design\" class=\"bluefocus\">
 				<option value=\"In-House\">In-House</option>
 				<option value=\"Client\">Client Provided</option>
 			</select>
 			<label for=\"color\" class=\"above\">Color (CMYK)</label>
 			<input type=\"text\" name=\"color\" placeholder=\"Color\" class=\"bluefocus text\"\>
+			<label for=\"selectimage\" class=\"above\">&nbsp;</label>
+			<input type=\"button\" name=\"selectimage\" value=\"Select Sample Image\" onclick=\"javascript:$('#sampleimage').show();$('#sampleimage').focus();$('#sampleimage').click();$('#sampleimage').hide();\" class=\"stdbutton bluefocus\">
+			<input type=\"submit\" value=\"Create\" class=\"stdbutton bluefocus\" />
 		</div>
 		<div style=\"float: right; text-align: right;\">
 			<label for=\"colums\" class=\"above\">Columns</label>
@@ -56,10 +57,8 @@ class CreateInsertBody extends Body{
 			<label for=\"inserts\" class=\"above\">Number of Placements</label>
 			<input type=\"text\" name=\"placements\" placeholder=\"Placements\" class=\"bluefocus text\"\><br />
 		</div>
-		<div style=\"float: left; text-align: left;\">
-			<br /><input type=\"button\" value=\"Select Sample Image\" onclick=\"javascript:$('#sampleimage').show();$('#sampleimage').focus();$('#sampleimage').click();$('#sampleimage').hide();\" class=\"stdbutton bluefocus\">
-			<input type=\"submit\" value=\"Create\" class=\"stdbutton bluefocus\" />
-		</div>
+		<input type=\"hidden\" name=\"action\" value=\"clientCreateInsertion\" />
+		<input type=\"file\" name=\"sampleimage\" id=\"sampleimage\" style=\"visibility: hidden; display: none;\" />
 		</form>
 		
 		</div>"; 

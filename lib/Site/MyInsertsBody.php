@@ -1,7 +1,9 @@
 <?php
 
 require_once 'Page.php';
+require_once './lib/DB/ClientDao.php';
 require_once './lib/DB/InsertionOrder.php';
+require_once './lib/DB/InsertionOrderDao.php';
 require_once './lib/DB/AdRep.php';
 require_once './lib/DB/Status.php';
 
@@ -56,13 +58,27 @@ class MyInsertsBody extends Body{
 
 	public function generateHTML(){
 	
+		if(LoginDao::getLoginByUsername(SessionUtil::getUsername())->getType() == Login::CLIENT){
+			return $this->generateClientHTML();
+		}else{
+			return "";
+		}
+		
+	}
+	
+	public function generateClientHTML(){
+		
 		$adRep = new AdRep(1, "Andrew Melton", "apmelton@radford.edu", "804-267-0327");
 		$status = new Status(1, "Design", "Your ad has been aproved and is being designed.");
 		$designStatus = new Status(1, "To Be Designed", "A designer is working on your ad.");
 		$billingStatus = new Status(1, "Paid", "");
-	
-		$insertion = new InsertionOrder($adRep, $status, $designStatus, $billingStatus,
-		"9/20/2011", "9/26/2011", "9/27/2011", 2, 4, 2, "In-House", "CMYK", 0, "ball");
+		
+		$orders = InsertionOrderDao::getOrdersByClientID(ClientDao::getClientByLogin(LoginDao::getLoginByUsername(SessionUtil::getUsername()))->getID());
+		$ordersHTML = "";
+		
+		foreach($orders as $order){
+			$ordersHTML = $ordersHTML . $order->generateDualRowHTML();
+		}
 	
 		return "<br />
 				<div id=\"insertsheader\">
@@ -86,15 +102,7 @@ class MyInsertsBody extends Body{
 				
 					<table id=\"report\" border=\"0\">
 						
-						".$insertion->generateDualRowHTML()."
-						".$insertion->generateDualRowHTML()."
-						".$insertion->generateDualRowHTML()."
-						".$insertion->generateDualRowHTML()."
-						".$insertion->generateDualRowHTML()."
-						".$insertion->generateDualRowHTML()."
-						".$insertion->generateDualRowHTML()."
-						".$insertion->generateDualRowHTML()."
-						".$insertion->generateDualRowHTML()."
+						".$ordersHTML."
 					
 					</table>
 				
