@@ -32,9 +32,9 @@ class CreateInsertBody extends Body{
 	public function generateHTML(){
 
 		return $this->context->getErrorHTML()."<div class=\"centered\" style=\"width: 45%\">
-		<form action=\"index.php?pageid=createInsertion\" method=\"POST\">
-		<input type=\"hidden\" name=\"action\" value=\"clientCreateInsertion\" \>
-		<input id=\"sampleimage\" type=\"file\" style=\"visibility: hidden; display: none;\" name=\"sampleimage\"/>
+		<form action=\"index.php?pageid=createInsertion\" method=\"POST\" enctype=\"multipart/form-data\">
+		<input type=\"hidden\" name=\"action\" value=\"clientCreateInsertion\" />
+		<input type=\"file\" name=\"sampleimage\" id=\"sampleimage\" style=\"visibility: hidden; display: none;\" />
 		<div style=\"float: left; text-align: left;\">
 			<label for=\"insertdate\" class=\"above\">Insert Date</label>
 			<input type=\"text\" readonly name=\"insertdate\" placeholder=\"Insert Date\" class=\"bluefocus text date\"\><br />
