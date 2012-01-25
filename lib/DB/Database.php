@@ -55,6 +55,11 @@ class Database{
 	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	*/
 
+	
+	/**
+	 * Safely escapes string
+	 * @param String $string
+	 */
 	public static function makeStringSafe($string){
 
 		return addslashes($string);
@@ -68,7 +73,10 @@ class Database{
 		your string is safe.
 
 	*/
-
+	/**
+	 * Safely escapes string (makes mysql connection)
+	 * @param unknown_type $string
+	 */
 	public static function makeMySQLSafe($string){
 		
 		if(Database::$link == null){

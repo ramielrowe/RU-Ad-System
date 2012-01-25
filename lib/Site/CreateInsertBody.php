@@ -2,6 +2,7 @@
 
 require_once 'lib/DB/DesignStatus.php';
 require_once 'lib/DB/InsertStatus.php';
+require_once 'lib/DB/Issue.php';
 
 class CreateInsertBody extends Body{
 
@@ -35,9 +36,9 @@ class CreateInsertBody extends Body{
 		<form action=\"index.php?pageid=createInsertion\" method=\"POST\" enctype=\"multipart/form-data\">
 		<div style=\"float: left; text-align: left;\">
 			<label for=\"insertdate\" class=\"above\">Insert Date</label>
-			<input type=\"text\" readonly name=\"insertdate\" placeholder=\"Insert Date\" class=\"bluefocus text date\"\><br />
+			".Issue::generateInsertDateSelect()."<br />
 			<label for=\"design\" class=\"above\">Design</label>
-			<select name=\"design\" id=\"design\" class=\"bluefocus\">
+			<select name=\"design\" class=\"bluefocus normalsize\">
 				<option value=\"In-House\">In-House</option>
 				<option value=\"Client\">Client Provided</option>
 			</select>

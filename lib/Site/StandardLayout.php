@@ -144,7 +144,7 @@ class StandardLayout extends Layout{
 				-webkit-border-radius: 5px;
 			}
 			
-			select#design {
+			select.normalsize {
 				
 				width: 160px;
 			
