@@ -53,14 +53,10 @@ class CreateInsertionHandler {
 	}
 
 	public function handleInHouseDesign(Context $context){
-
-		$insertDate = explode('/',$_POST['insertdate']);
-		$mysqlFormattedDate = $insertDate[2] . "-" . $insertDate[1] . "-" . $insertDate[0];
-
+		
+		$mysqlFormattedDate = $_POST['insertdate'];
+		
 		if(isset($_FILES['sampleimage'])){
-
-			$insertDate = explode('/',$_POST['insertdate']);
-			$mysqlFormattedDate = $insertDate[2] . "-" . $insertDate[1] . "-" . $insertDate[0];
 				
 			$clientId = ClientDao::getClientByLogin(LoginDao::getLoginByUsername(SessionUtil::getUsername()))->getID();
 				

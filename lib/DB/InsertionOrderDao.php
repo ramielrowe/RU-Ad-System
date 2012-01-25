@@ -16,8 +16,17 @@ class InsertionOrderDao {
 
 		$status = InsertStatusDao::getRecieved();
 
+		$adreps = AdRepDao::getAdRepsNotAssigned($insertDate);
+		$adrep;
+
+		if(count($adreps) > 0){
+			$adrep = array_rand($adreps);
+		}else{
+			$adrep = AdRepDao::getLowestAssignedAdRep($insertDate);
+		}
+
 		$query = "INSERT INTO ".Database::addPrefix('insertionorders')."
-	SET ClientID = '".Database::makeStringSafe($clientId)."', Design = '".Database::makeStringSafe($design)."',
+	SET ClientID = '".Database::makeStringSafe($clientId)."', AdRepID = '".$adrep->getID()."', Design = '".Database::makeStringSafe($design)."',
 	StatusID = '".Database::makeStringSafe($status->getID())."', Color = '".Database::makeStringSafe($color)."',
 	Columns = '".Database::makeStringSafe($columns)."', Height = '".Database::makeStringSafe($height)."',
 	NumInserts = '".Database::makeStringSafe($inserts)."', NumPlacements = '".Database::makeStringSafe($placements)."',
@@ -32,8 +41,17 @@ class InsertionOrderDao {
 
 		$status = InsertStatusDao::getRecieved();
 
+		$adreps = AdRepDao::getAdRepsNotAssigned($insertDate);
+		$adrep;
+
+		if(count($adreps) > 0){
+			$adrep = $adreps[array_rand($adreps)];
+		}else{
+			$adrep = AdRepDao::getLowestAssignedAdRep($insertDate);
+		}
+
 		$query = "INSERT INTO ".Database::addPrefix('insertionorders')."
-			SET ClientID = '".Database::makeStringSafe($clientId)."', Design = '".Database::makeStringSafe($design)."', 
+			SET ClientID = '".Database::makeStringSafe($clientId)."', AdRepID = '".$adrep->getID()."', Design = '".Database::makeStringSafe($design)."', 
 		StatusID = '".Database::makeStringSafe($status->getID())."', Color = '".Database::makeStringSafe($color)."', 
 		Columns = '".Database::makeStringSafe($columns)."', Height = '".Database::makeStringSafe($height)."', 
 		NumInserts = '".Database::makeStringSafe($inserts)."', NumPlacements = '".Database::makeStringSafe($placements)."', 
@@ -50,9 +68,9 @@ class InsertionOrderDao {
 		$result = Database::doQuery($query);
 		$oders = array();
 		while($row = mysql_fetch_assoc($result)){
-				
+
 			$orders[] = InsertionOrderDao::populateInsertionOrder($row);
-				
+
 		}
 		return $orders;
 	}
@@ -69,13 +87,13 @@ class InsertionOrderDao {
 	}
 
 	private static function populateInsertionOrder($row){
-		
-		$adRep;
-		if(isset($row['AdRepId'])){
-		$adRep = AdRepDao::getAdRepByID($row['AdRepId']);
-				}else{
+
 		$adRep = AdRep::unassignedAdRep();
+		
+		if(isset($row['AdRepID'])){
+			$adRep = AdRepDao::getAdRepByID($row['AdRepID']);
 		}
+		
 		$client = ClientDao::getClientByID($row['ClientID']);
 			
 		$status = InsertStatusDao::getByID($row['StatusID']);
