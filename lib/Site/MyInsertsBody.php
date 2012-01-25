@@ -55,25 +55,19 @@ class MyInsertsBody extends Body{
 		</script>";
 	
 	}
-
-	public function generateHTML(){
 	
-		if(LoginDao::getLoginByUsername(SessionUtil::getUsername())->getType() == Login::CLIENT){
-			return $this->generateClientHTML();
-		}else{
-			return "";
+	public function generateHTML(){
+		
+		$currAccountType = LoginDao::getLoginByUsername(SessionUtil::getUsername())->getType();
+		
+		$orders = array();
+		
+		if($currAccountType == Login::ADREP){
+			$orders = InsertionOrderDao::getOrdersByAdRepID(AdRepDao::getAdRepByLogin(LoginDao::getLoginByUsername(SessionUtil::getUsername()))->getID());
+		}else if($currAccountType == Login::CLIENT){
+			$orders = InsertionOrderDao::getOrdersByClientID(ClientDao::getClientByLogin(LoginDao::getLoginByUsername(SessionUtil::getUsername()))->getID());
 		}
 		
-	}
-	
-	public function generateClientHTML(){
-		
-		$adRep = new AdRep(1, "Andrew Melton", "apmelton@radford.edu", "804-267-0327");
-		$status = new Status(1, "Design", "Your ad has been aproved and is being designed.");
-		$designStatus = new Status(1, "To Be Designed", "A designer is working on your ad.");
-		$billingStatus = new Status(1, "Paid", "");
-		
-		$orders = InsertionOrderDao::getOrdersByClientID(ClientDao::getClientByLogin(LoginDao::getLoginByUsername(SessionUtil::getUsername()))->getID());
 		$ordersHTML = "";
 		
 		foreach($orders as $order){

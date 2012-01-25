@@ -62,6 +62,18 @@ class InsertionOrderDao {
 		Database::doQuery($query);
 
 	}
+	
+	public static function getOrdersByAdRepID($adRepID){
+		$query = "SELECT * FROM ".Database::addPrefix('insertionorders')." WHERE AdRepID = '".$adRepID."'";
+		$result = Database::doQuery($query);
+		$oders = array();
+		while($row = mysql_fetch_assoc($result)){
+
+			$orders[] = InsertionOrderDao::populateInsertionOrder($row);
+
+		}
+		return $orders;
+	}
 
 	public static function getOrdersByClientID($clientId){
 		$query = "SELECT * FROM ".Database::addPrefix('insertionorders')." WHERE ClientID = '".$clientId."'";
