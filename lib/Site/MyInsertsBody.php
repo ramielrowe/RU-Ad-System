@@ -9,7 +9,6 @@ require_once './lib/DB/Status.php';
 
 class MyInsertsBody extends Body{
 
-	
 	public function getTitle(){
 	
 		return "My Insertions";
@@ -56,22 +55,12 @@ class MyInsertsBody extends Body{
 	
 	}
 	
-	public function generateHTML(){
-		
-		$currAccountType = LoginDao::getLoginByUsername(SessionUtil::getUsername())->getType();
-		
-		$orders = array();
-		
-		if($currAccountType == Login::ADREP){
-			$orders = InsertionOrderDao::getOrdersByAdRepID(AdRepDao::getAdRepByLogin(LoginDao::getLoginByUsername(SessionUtil::getUsername()))->getID());
-		}else if($currAccountType == Login::CLIENT){
-			$orders = InsertionOrderDao::getOrdersByClientID(ClientDao::getClientByLogin(LoginDao::getLoginByUsername(SessionUtil::getUsername()))->getID());
-		}
+	public function genereateClientHTML($orders){
 		
 		$ordersHTML = "";
 		
 		foreach($orders as $order){
-			$ordersHTML = $ordersHTML . $order->generateDualRowHTML();
+			$ordersHTML = $ordersHTML . $order->generateDualRowHTMLForClient();
 		}
 	
 		return "<br />
@@ -79,7 +68,7 @@ class MyInsertsBody extends Body{
 				<table id=\"report2\" border=\"0\">
 					<tr>
 						
-						<th class=\"adrep\">Your Ad Rep</th>
+						<th class=\"adrep\">AdRep</th>
 						<th class=\"created\">Created</th>
 						<th class=\"updated\">Updated</th>
 						<th class=\"issue\">Issue</th>
@@ -101,6 +90,60 @@ class MyInsertsBody extends Body{
 					</table>
 				
 				</div>";
+	
+	}
+	
+	public function genereatAdRepHTML($orders){
+		
+		$ordersHTML = "";
+		
+		foreach($orders as $order){
+			$ordersHTML = $ordersHTML . $order->generateDualRowHTMLForAdRep();
+		}
+	
+		return "<br />
+				<div id=\"insertsheader\">
+				<table id=\"report2\" border=\"0\">
+					<tr>
+						
+						<th class=\"adrep\">Client</th>
+						<th class=\"created\">Created</th>
+						<th class=\"updated\">Updated</th>
+						<th class=\"issue\">Issue</th>
+						<th class=\"status\">Status</th>
+						<th class=\"designstatus\">Design-Status</th>
+						<th class=\"billingstatus\">Billing</th>
+						<!--<th class=\"arrow\"></th>-->
+						
+					</tr>
+				</table>
+				</div>
+			
+				<div id=\"contentdiv\" class=\"scroll\">
+				
+					<table id=\"report\" border=\"0\">
+						
+						".$ordersHTML."
+					
+					</table>
+				
+				</div>";
+	
+	}
+	
+	public function generateHTML(){
+
+		$currAccountType = LoginDao::getLoginByUsername(SessionUtil::getUsername())->getType();
+		
+		$orders = array();
+		
+		if($currAccountType == Login::ADREP){
+			$orders = InsertionOrderDao::getOrdersByAdRepID(AdRepDao::getAdRepByLogin(LoginDao::getLoginByUsername(SessionUtil::getUsername()))->getID());
+			return $this->genereatAdRepHTML($orders);
+		}else if($currAccountType == Login::CLIENT){
+			$orders = InsertionOrderDao::getOrdersByClientID(ClientDao::getClientByLogin(LoginDao::getLoginByUsername(SessionUtil::getUsername()))->getID());
+			return $this->genereateClientHTML($orders);
+		}	
 	
 	}
 

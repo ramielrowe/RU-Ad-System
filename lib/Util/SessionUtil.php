@@ -11,9 +11,17 @@ class SessionUtil{
 	}
 	
 	public static function start(){
-	
+		
+		SessionUtil::regen();
 		return session_start();
 	
+	}
+	
+	private static function regen(){
+		
+		
+		session_regenerate_id(true);
+		
 	}
 	
 	public static function clear(){

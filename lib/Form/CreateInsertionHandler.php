@@ -154,7 +154,6 @@ class CreateInsertionHandler {
 			return "";
 		}
 
-
 	}
 
 }

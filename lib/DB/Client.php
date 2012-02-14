@@ -100,6 +100,12 @@ class Client{
 		$this->address = $address;
 
 	}
+	
+	public function generateTableCellHTMLWithEmail(){
+	
+		return "<a href=\"mailto:".$this->getEmail()."\" class=\"info\" title=\"".$this->getEmail()."\">".$this->getName()."</a>";
+	
+	}
 
 }
 

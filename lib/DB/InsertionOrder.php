@@ -67,7 +67,42 @@ class InsertionOrder {
 		return $this->imageLoc;
 	}
 	
-	public function generateDualRowHTML(){
+	public function generateDualRowHTMLForAdRep(){
+	
+		$html = "
+<tr>
+
+	<td class=\"adrep\">".$this->client->generateTableCellHTMLWithEmail()."</td>
+	<td class=\"created\">".$this->createdDate."</td>
+	<td class=\"updated\">".$this->lastUpdatedDate."</td>
+	<td class=\"issue\">".$this->insertDate."</td>
+	<td class=\"status\">".$this->status->generateTableCellHTML()."</td>
+	<td class=\"designstatus\">".$this->designStatus->generateTableCellHTML()."</td>
+	<td class=\"billingstatus\">".$this->billingStatus->generateTableCellHTML()."</td>
+	<td class=\"arrow\"><div class=\"arrow\"></div></td>
+
+</tr>
+
+<tr>
+
+	<td colspan=\"8\">
+	
+		<a href=\"".$this->imageLoc."\" target=\"_blank\" class=\"preview\"><img src=\"./thumb.php?insertId=".$this->id."\"></a>
+		<ul>
+			<li>".$this->numColumns." Columns x ".$this->height." Inches</li>
+			<li>Placements: ".$this->numPlacements."</li>
+			<li>Design: ".$this->design."</li>
+			<li>Color: ".$this->color."</li>
+			<li>Inserts: ".$this->numInserts."</li>
+	
+	</td>
+
+</tr>";
+						
+		return $html;
+	}
+	
+	public function generateDualRowHTMLForClient(){
 	
 		$html = "
 <tr>
